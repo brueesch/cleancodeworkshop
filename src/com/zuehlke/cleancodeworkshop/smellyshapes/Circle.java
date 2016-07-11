@@ -30,20 +30,10 @@ public class Circle extends SimpleShape {
         return numberOfContainingPoints;
     }
 
-    /**
-     * This method returns the shape color.
-     *
-     * @return the shape color
-     */
     public Color getColor() {
         return color;
     }
 
-    /**
-     * Sets the shape color
-     *
-     * @param color the new color of the shape
-     */
     public void setColor(Color color) {
         this.color = color;
     }

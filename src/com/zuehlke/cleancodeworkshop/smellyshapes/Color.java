@@ -16,20 +16,17 @@ public class Color {
 
     private void convertTextValueToRGBAndHex() {
         errorMessage = "";
-        // set to Red
         if ("Red".equals(colorAsText)) {
             colorAsRGB_Red = "255";
             colorAsRGB_Blue = "0";
             colorAsRGB_Green = "0";
             colorAsHex = "#FF0000";
         } else if ("Blue".equals(colorAsText)) {
-            // set to Blue
             colorAsRGB_Red = "0";
             colorAsRGB_Blue = "255";
             colorAsRGB_Green = "0";
             colorAsHex = "#00FF00";
         } else if ("Green".equals(colorAsText)) {
-            // set to Green
             colorAsRGB_Red = "0";
             colorAsRGB_Blue = "0";
             colorAsRGB_Green = "255";
