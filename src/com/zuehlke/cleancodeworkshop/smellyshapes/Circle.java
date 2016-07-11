@@ -59,4 +59,13 @@ public class Circle extends Shape {
                 + this.color.getGreen() + ","
                 + this.color.getBlue();
     }
+
+    public String toXml() {
+        builder.append("<circle");
+        builder.append(" x=\"" + x + "\"");
+        builder.append(" y=\"" + y + "\"");
+        builder.append(" radius=\"" + radius + "\"");
+        builder.append(" />\n");
+        return builder.toString();
+    }
 }

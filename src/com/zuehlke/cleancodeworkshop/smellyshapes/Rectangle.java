@@ -29,7 +29,7 @@ public class Rectangle extends Shape {
     }
 
     public int calculate() {
-        return width*height;
+        return width * height;
     }
 
     public int getX() {
@@ -42,6 +42,17 @@ public class Rectangle extends Shape {
 
     public String toString() {
         return String.format("Rectangle: (%d,%d) width=%d height=%d color=%s", x, y, width, height,
-                             c.getColorAsHex());
+                c.getColorAsHex());
+    }
+
+    public String toXml() {
+        Rectangle rectangle = (Rectangle) this;
+        builder.append("<rectangle");
+        builder.append(" x=\"" + rectangle.getX() + "\"");
+        builder.append(" y=\"" + rectangle.getY() + "\"");
+        builder.append(" width=\"" + rectangle.getWidth() + "\"");
+        builder.append(" height=\"" + rectangle.getHeight() + "\"");
+        builder.append(" />\n");
+        return builder.toString();
     }
 }
