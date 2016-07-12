@@ -1,12 +1,15 @@
 package com.zuehlke.cleancodeworkshop.smellyshapes;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
 public class ShapeGroup extends Shape {
 
-    public static final int INITIAL_CAPACITY = 10;
-    public static final int CAPACITY_INCREASE_AMOUNT = 10;
     protected boolean readOnly = false;
-    Shape[] shapes = new Shape[INITIAL_CAPACITY];
-    int size = 0;
+    Set<Shape> shapeSet = new HashSet<>();
+
+
 
     public static ShapeGroup initializeWithReadOnly(Shape[] shapes) {
         return new ShapeGroup(shapes, true);
@@ -19,18 +22,19 @@ public class ShapeGroup extends Shape {
     public ShapeGroup() {
     }
 
-    public ShapeGroup(Shape[] shapes, boolean readOnly) {
-        this.shapes = shapes;
-        this.size = shapes.length;
+    public int getSize() {
+        return shapeSet.size();
+    }
+
+
+    private ShapeGroup(Shape[] shapes, boolean readOnly) {
+        Collections.addAll(this.shapeSet, shapes);
         this.readOnly = readOnly;
     }
 
     public void add(Shape shape) {
         if (readOnly) {
             return;
-        }
-        if (shouldGrow()) {
-            grow();
         }
 
         if (contains(shape)) {
@@ -39,37 +43,19 @@ public class ShapeGroup extends Shape {
         addInternally(shape);
     }
 
-    private boolean shouldGrow() {
-        return size + 1 > shapes.length;
-    }
-
-    private void grow() {
-        Shape[] newShapes = new Shape[shapes.length + CAPACITY_INCREASE_AMOUNT];
-        for (int i = 0; i < size; i++) {
-            newShapes[i] = shapes[i];
-        }
-        shapes = newShapes;
-    }
 
     private void addInternally(Shape shape) {
-        shapes[size++] = shape;
+        shapeSet.add(shape);
     }
 
     public boolean contains(Shape shape) {
-        for (int i = 0; i < size; i++) {
-            if (shapes[i].equals(shape)) {
-                return true;
-            }
-        }
-        return false;
+        return shapeSet.contains(shape);
     }
 
     public boolean contains(int x, int y) {
-        for (Shape shape : shapes) {
-            if (shape != null) {
-                if (shape.contains(x, y)) {
-                    return true;
-                }
+        for (Shape shape : shapeSet) {
+            if (shape.contains(x, y)) {
+                return true;
             }
         }
         return false;
@@ -83,8 +69,8 @@ public class ShapeGroup extends Shape {
         StringBuilder builder = new StringBuilder();
 
         builder.append("<shapegroup>\n");
-        for (int i = 0; i < this.size; i++) {
-            builder.append(this.shapes[i].toXml());
+        for(Shape shape : shapeSet) {
+            builder.append(shape.toXml());
         }
         builder.append("</shapegroup>\n");
 
