@@ -17,10 +17,10 @@ public class Circle extends Shape {
         return square(deltaX) + square(deltaY) <= square(radius);
     }
 
-    public int countContainingPoints(int[] xCords, int[] yCords) {
+    public int countContainingPoints(Point[] points) {
         int numberOfContainingPoints = 0;
-        for (int i = 0; i < xCords.length; ++i) {
-            if (contains(new Point(xCords[i], yCords[i]))) {
+        for (int i = 0; i < points.length; ++i) {
+            if (contains(points[i])) {
                 numberOfContainingPoints++;
             }
         }
