@@ -49,9 +49,7 @@ public class Circle extends Shape {
 
     public String toString() {
         return "Circle: (" + getX() + "," + getY() + ") radius= " + radius
-                + " RGB=" + this.color.getRed() + ","
-                + this.color.getGreen() + ","
-                + this.color.getBlue();
+                + color.getRGB();
     }
 
     private static int square(int value) {
