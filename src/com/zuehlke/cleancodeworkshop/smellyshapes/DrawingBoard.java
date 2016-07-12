@@ -1,8 +1,7 @@
 package com.zuehlke.cleancodeworkshop.smellyshapes;
 
-public class DrawingBoard {
+public class DrawingBoard extends ShapeGroup {
 
-    private final ShapeGroup shapeGroup = new ShapeGroup();
     private Color backgroundColor;
 
     public Color getBackgroundColor() {
@@ -28,9 +27,4 @@ public class DrawingBoard {
         drawingBoard.load(args[0]);
         drawingBoard.drawOnScreen();
     }
-
-    public void add(Shape shape) {
-        shapeGroup.add(shape);
-    }
-
 }

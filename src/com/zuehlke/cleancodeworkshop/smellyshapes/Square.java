@@ -21,7 +21,7 @@ public class Square extends Rectangle {
 
     public String toString() {
         return String.format("Square: (%d,%d) edgeLength=%d color=%s",
-                             getX(), getY(), getWidth(), c.getColorAsHex());
+                getX(), getY(), getWidth(), c.getColorAsHex());
     }
 
     public boolean contains(int x1, int y1, int x2, int y2) {
@@ -29,12 +29,14 @@ public class Square extends Rectangle {
     }
 
     public String toXml() {
-        Square square = (Square) this;
-            builder.append("<square");
-            builder.append(" x=\"" + square.getX() + "\"");
-            builder.append(" y=\"" + square.getY() + "\"");
-            builder.append(" edgeLength=\"" + square.getWidth() + "\"");
-            builder.append(" />\n");
+        StringBuilder builder = new StringBuilder();
+
+        builder.append("<square");
+        builder.append(" x=\"" + this.getX() + "\"");
+        builder.append(" y=\"" + this.getY() + "\"");
+        builder.append(" edgeLength=\"" + this.getWidth() + "\"");
+        builder.append(" />\n");
+
         return builder.toString();
     }
 }

@@ -3,12 +3,13 @@ package com.zuehlke.cleancodeworkshop.smellyshapes;
 public class ShapeGroup extends Shape {
 
     public static final int INITIAL_CAPACITY = 10;
-    public static final int CAPACITY_GROW_SIZE = 10;
+    public static final int CAPACITY_INCREASE_AMOUNT = 10;
     protected boolean readOnly = false;
     Shape[] shapes = new Shape[INITIAL_CAPACITY];
     int size = 0;
 
-    public ShapeGroup() {}
+    public ShapeGroup() {
+    }
 
     public ShapeGroup(Shape[] shapes, boolean readOnly) {
         this.shapes = shapes;
@@ -17,28 +18,33 @@ public class ShapeGroup extends Shape {
     }
 
     public void add(Shape shape) {
-        if (readOnly) {return;}
-        if (contains(shape)) {return;}
-
-        if (shouldArrayBeIncreased()) {
-            increaseArray();
+        if (readOnly) {
+            return;
         }
-        addToArray(shape);
+        if (shouldGrow()) {
+            grow();
+        }
+
+        if (contains(shape)) {
+            return;
+        }
+        addInternally(shape);
     }
 
-    private void addToArray(Shape shape) {
-        shapes[size] = shape;
-        size++;
+    private boolean shouldGrow() {
+        return size + 1 > shapes.length;
     }
 
-    private boolean shouldArrayBeIncreased() {
-        return (size + 1) > shapes.length;
-    }
-
-    private void increaseArray() {
-        Shape[] newShapes = new Shape[shapes.length + CAPACITY_GROW_SIZE];
-        System.arraycopy(shapes, 0, newShapes, 0, size);
+    private void grow() {
+        Shape[] newShapes = new Shape[shapes.length + CAPACITY_INCREASE_AMOUNT];
+        for (int i = 0; i < size; i++) {
+            newShapes[i] = shapes[i];
+        }
         shapes = newShapes;
+    }
+
+    private void addInternally(Shape shape) {
+        shapes[size++] = shape;
     }
 
     public boolean contains(Shape shape) {
@@ -66,12 +72,14 @@ public class ShapeGroup extends Shape {
     }
 
     public String toXml() {
-        ShapeGroup group = (ShapeGroup) this;
-            builder.append("<shapegroup>\n");
-            for (int i = 0; i < group.size; i++) {
-                builder.append(group.shapes[i].toXml());
-            }
-            builder.append("</shapegroup>\n");
+        StringBuilder builder = new StringBuilder();
+
+        builder.append("<shapegroup>\n");
+        for (int i = 0; i < this.size; i++) {
+            builder.append(this.shapes[i].toXml());
+        }
+        builder.append("</shapegroup>\n");
+
         return builder.toString();
     }
 }
