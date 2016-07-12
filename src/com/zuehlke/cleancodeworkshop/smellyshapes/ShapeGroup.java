@@ -8,6 +8,14 @@ public class ShapeGroup extends Shape {
     Shape[] shapes = new Shape[INITIAL_CAPACITY];
     int size = 0;
 
+    public static ShapeGroup initializeWithReadOnly(Shape[] shapes) {
+        return new ShapeGroup(shapes, true);
+    }
+
+    public static ShapeGroup initializeWithoutReadOnly(Shape[] shapes) {
+        return new ShapeGroup(shapes, false);
+    }
+
     public ShapeGroup() {
     }
 
