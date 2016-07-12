@@ -2,18 +2,18 @@ package com.zuehlke.cleancodeworkshop.smellyshapes;
 
 public class Circle extends Shape {
 
-    private Point point;
+    private Point center;
     private int radius;
     private Color color = new Color("Green");
 
-    public Circle(Point point, int radius) {
-        this.point = point;
+    public Circle(Point center, int radius) {
+        this.center = center;
         this.radius = radius;
     }
 
     public boolean contains(Point point) {
-        int deltaX = point.getX() - this.point.getX();
-        int deltaY = point.getY() - this.point.getY();
+        int deltaX = point.getX() - this.center.getX();
+        int deltaY = point.getY() - this.center.getY();
         return square(deltaX) + square(deltaY) <= square(radius);
     }
 
@@ -36,11 +36,11 @@ public class Circle extends Shape {
     }
 
     public int getX() {
-        return point.getX();
+        return center.getX();
     }
 
     public int getY() {
-        return point.getY();
+        return center.getY();
     }
 
     public int getRadius() {
@@ -48,7 +48,7 @@ public class Circle extends Shape {
     }
 
     public String toString() {
-        return "Circle: " + point.getCenter() + " radius= " + radius
+        return "Circle: " + center.getCenter() + " radius= " + radius
                 + color.getRGB();
     }
 
