@@ -52,9 +52,9 @@ public class ShapeGroup extends Shape {
         return shapeSet.contains(shape);
     }
 
-    public boolean contains(int x, int y) {
+    public boolean contains(Point point) {
         for (Shape shape : shapeSet) {
-            if (shape.contains(x, y)) {
+            if (shape.contains(point)) {
                 return true;
             }
         }
