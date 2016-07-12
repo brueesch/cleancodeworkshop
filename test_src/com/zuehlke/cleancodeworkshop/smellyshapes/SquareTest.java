@@ -43,8 +43,4 @@ public class SquareTest {
         assertFalse(square.containsPoint(2, 1));
     }
 
-    @Test(expected = RuntimeException.class)
-    public void getHeigth() {
-        new Square(0, 0, 0).getHeight();
-    }
 }

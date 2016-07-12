@@ -32,7 +32,7 @@ public class ColorTest {
     public void getColorFormatted_true() {
         Color c = new Color("Red");
 
-        String formattedColor = c.getColorFormatted(true);
+        String formattedColor = c.getColorFormattedWithHexAndRGB();
 
         assertEquals("Red #FF0000 255:0:0", formattedColor);
     }
@@ -41,7 +41,7 @@ public class ColorTest {
     public void getColorFormatted_false() {
         Color c = new Color("Red");
 
-        String formattedColor = c.getColorFormatted(false);
+        String formattedColor = c.getColorFormatted();
 
         assertEquals("Red", formattedColor);
     }
