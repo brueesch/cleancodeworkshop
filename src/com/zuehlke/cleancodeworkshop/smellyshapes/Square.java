@@ -15,10 +15,6 @@ public class Square extends Rectangle {
         return getX() <= x && x <= getX() + getWidth() && getY() <= y && y <= getY() + getWidth();
     }
 
-    public int getHeight() throws RuntimeException {
-        throw new RuntimeException("Square does not have a height, only edgeLength");
-    }
-
     public String toString() {
         return String.format("Square: (%d,%d) edgeLength=%d color=%s",
                 getX(), getY(), getWidth(), c.getColorAsHex());
