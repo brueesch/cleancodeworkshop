@@ -16,4 +16,8 @@ public class Point {
     public int getY() {
         return y;
     }
+
+    String getCenter() {
+        return "(" + getX() + "," + getY() + ")";
+    }
 }
